@@ -2,26 +2,21 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 
-const pool = require('./src/pg')
-
 const port = process.env.PORT || 5000;
+const db = require('./src/models');
+db.sequelize.sync();
 
 app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+const user_route = require('./src/routes/user');
 
 app.get("/", (req, res) => {
-    pool.query('SELECT * FROM Users', (err, res) => {
-        if (err) {
-            console.log(err.stack);
-        } else {
-            console.log(res.rows[0]);
-        }
-    
-    })
-})
+    res.send("sign-in + sign-up API is ready");
+});
 
-module.exports = (a, b) => {
-    return a + b;
-}
+app.use('/user', user_route);
 
 app.listen(port, () => {
     console.log(`Listening on ${port}`);
