@@ -1,6 +1,6 @@
-const db = require('../models');
+const db = require('../../database/models');
 
-const User = db.users;
+const User = db.user;
 const Op = db.Sequelize.Op; // for operator (e.g: where condition1 Op.and condition2)
 
 exports.create = (req, res) => {
