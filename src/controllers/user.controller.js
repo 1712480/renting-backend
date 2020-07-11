@@ -30,6 +30,7 @@ exports.create = (req, res) => {
         .catch(err => {
             switch (err.parent.code) {
                 case "23505":
+                    // violates unique constraint
                     res.status(409).send({
                         status: 409,
                         data: err.parent.detail
