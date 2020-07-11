@@ -12,8 +12,9 @@ app.use(express.urlencoded({ extended: true }));
 
 const user_route = require('./src/routes/user');
 
+const config = require('./src/pg/config');
 app.get("/", (req, res) => {
-    res.send("sign-in + sign-up API is ready");
+    res.send(config);
 });
 
 app.use('/user', user_route);
