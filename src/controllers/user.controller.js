@@ -47,10 +47,33 @@ exports.create = (req, res) => {
 };
 
 exports.findAll = (req, res) => {
-    const email = req.query.email;
-    var condition = email ? { email: email } : null;
+    User.findAll()
+        .then(data => {
+            res.status(200).send({
+                status: 200,
+                data: data
+            });
+        })  
+        .catch(err => {
+            res.status(500).send({
+                status: 500,
+                data: err.message || "Some error occurred."
+            });
+        });
+};
 
-    User.findAll({ where: condition })
+exports.findBy = (req, res) => {
+    const email = req.body.email;
+    const password = req.body.password;
+
+    User.findAll({ 
+        where: {
+            [Op.and]: [
+                { email: email },
+                { password: password}
+            ]
+        }
+    })
         .then(data => {
             res.status(200).send({
                 status: 200,
