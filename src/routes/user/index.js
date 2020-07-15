@@ -8,4 +8,6 @@ user_router.post('/', users.create);
 
 user_router.put('/:id', users.update);
 
+user_router.post('/getAll', users.findAll);
+
 module.exports = user_router;
