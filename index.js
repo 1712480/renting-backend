@@ -10,12 +10,15 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 const user_route = require('./src/routes/user');
+const accommodation_route = require('./src/routes/accommodation');
 
 app.get("/", (req, res) => {
     res.send("BACKEND");
 });
 
 app.use('/user', user_route);
+
+app.use('/accommodation', accommodation_route);
 
 app.listen(port, () => {
     console.log(`Listening on ${port}`);

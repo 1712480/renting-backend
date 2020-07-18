@@ -22,14 +22,11 @@ exports.create = (req, res) => {
         role: req.body.role
     };
 
-    let hashed = null;
     bcrypt.hash(user.password, salt)
         .then( pass => {
-            hashed = pass;
-
             User.create({
                 ...user,
-                password: hashed
+                password: pass
             })
                 .then(data => {
                     res.status(201).send({
@@ -138,3 +135,51 @@ exports.update = (req, res) => {
             })
         });
 };
+
+exports.changePassword = (req, res) => {
+    const { email, oldPass, newPass } = req.body;
+
+    User.findAll({
+        where: { email: email }
+    })
+        .then(data => {
+            bcrypt.compare(oldPass, data[0].dataValues.password)
+                .then(result => {
+                    if (result) {
+                        bcrypt.hash(newPass, salt)
+                            .then(pass => {
+                                User.update({
+                                    ...data[0].dataValues,
+                                    password: pass
+                                }, {
+                                    where: { email: email }
+                                })
+                                    .then(data => {
+                                        res.status(200).send({
+                                            status: 200,
+                                            data: "Success."
+                                        })
+                                    })
+                                    .catch(err => {
+                                        res.status(500).send({
+                                            status: 500,
+                                            data: err.message || "Something happenned."
+                                        })
+                                    })
+                            })
+                        
+                    } else {
+                        res.status(400).send({
+                            status: 400,
+                            data: "Wrong password."
+                        })
+                    }
+                })
+        })
+        .catch(err => {
+            res.status(500).send({
+                status: 500,
+                data: err.message || "Something happenned."
+            })
+        })
+}
