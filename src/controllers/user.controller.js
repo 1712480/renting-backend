@@ -75,10 +75,17 @@ exports.findBy = (req, res) => {
         }
     })
         .then(data => {
-            res.status(200).send({
-                status: 200,
-                data: data
-            });
+            if (data[0] === undefined) {
+                res.status(404).send({
+                    status: 404,
+                    data: {}
+                })
+            } else {
+                res.status(200).send({
+                    status: 200,
+                    data: data[0].dataValues
+                });
+            }
         })  
         .catch(err => {
             res.status(500).send({
