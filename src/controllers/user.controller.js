@@ -23,7 +23,7 @@ exports.create = (req, res) => {
     };
 
     bcrypt.hash(user.password, salt)
-        .then( pass => {
+        .then(pass => {
             User.create({
                 ...user,
                 password: pass

@@ -15,3 +15,7 @@ Link: https://backend-hung-kha-renting.herokuapp.com/
  
   ### *nếu cần xóa data mẫu*
  `sequelize db:seed:undo:all`
+
+ ### `.env`
+`DATABASE_URL = 
+DEV_DATABASE_URL=postgres://postgres:postgres@127.0.0.1:5432/renting`

@@ -30,7 +30,8 @@ module.exports = (sequelize, DataTypes) => {
     area: DataTypes.INTEGER,
     water: DataTypes.INTEGER,
     electric: DataTypes.INTEGER,
-    owner: DataTypes.INTEGER
+    owner: DataTypes.INTEGER,
+    images: DataTypes.ARRAY(DataTypes.STRING)
   }, {
     sequelize,
     modelName: 'accommodation',

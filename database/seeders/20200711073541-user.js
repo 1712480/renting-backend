@@ -8,7 +8,7 @@ module.exports = {
         name: 'Hung',
         phone: '0927563829',
         email: 'hung@mail.com',
-        password: '123456',
+        password: '$2b$10$Ppz.Xv0kJLBP6JmoGfs6ceG4/2VGRoo5xcP0aYlcMt8DJ6z79tgKC',
         role: 2,
         createdAt: new Date(),
         updatedAt: new Date()
@@ -17,7 +17,7 @@ module.exports = {
         name: 'Kha',
         phone: '0927563229',
         email: 'kha@mail.com',
-        password: '123456',
+        password: '$2b$10$Ppz.Xv0kJLBP6JmoGfs6ceG4/2VGRoo5xcP0aYlcMt8DJ6z79tgKC',
         role: 2,
         createdAt: new Date(),
         updatedAt: new Date()
