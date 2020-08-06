@@ -1,7 +1,7 @@
-'use strict';
 const {
-  Model
+  Model,
 } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class accommodation extends Model {
     /**
@@ -14,12 +14,12 @@ module.exports = (sequelize, DataTypes) => {
       accommodation.belongsTo(models.user, {
         foreignKey: 'owner',
         as: 'author',
-        onDelete: 'CASCADE'
-      })
+        onDelete: 'CASCADE',
+      });
 
       return accommodation;
     }
-  };
+  }
   accommodation.init({
     name: DataTypes.STRING,
     dateTime: DataTypes.DATE,
@@ -31,7 +31,7 @@ module.exports = (sequelize, DataTypes) => {
     water: DataTypes.INTEGER,
     electric: DataTypes.INTEGER,
     owner: DataTypes.INTEGER,
-    images: DataTypes.ARRAY(DataTypes.STRING)
+    images: DataTypes.ARRAY(DataTypes.STRING),
   }, {
     sequelize,
     modelName: 'accommodation',

@@ -1,4 +1,5 @@
 const express = require('express');
+
 const app = express();
 const cors = require('cors');
 require('dotenv').config();
@@ -9,17 +10,17 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-const user_route = require('./src/routes/user');
-const accommodation_route = require('./src/routes/accommodation');
+const userRoute = require('./src/routes/user');
+const accommodationRouter = require('./src/routes/accommodation');
 
-app.get("/", (req, res) => {
-    res.send("BACKEND");
+app.get('/', (req, res) => {
+  res.send('BACKEND');
 });
 
-app.use('/user', user_route);
+app.use('/user', userRoute);
 
-app.use('/accommodation', accommodation_route);
+app.use('/accommodation', accommodationRouter);
 
 app.listen(port, () => {
-    console.log(`Listening on ${port}`);
-})
+  console.log(`Listening on ${port}`);
+});

@@ -1,7 +1,7 @@
-'use strict';
 const {
   Model
 } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class user extends Model {
     /**
@@ -15,11 +15,11 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'owner',
         as: 'accommodations',
         onDelete: 'CASCADE'
-      })
+      });
 
       return user;
     }
-  };
+  }
   user.init({
     name: DataTypes.STRING,
     phone: DataTypes.STRING,
