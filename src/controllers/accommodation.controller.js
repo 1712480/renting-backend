@@ -67,6 +67,9 @@ exports.getAll = (req, res) => {
       });
     })
     .catch(err => {
-      res.send(err);
+      res.status(500).send({
+        status: 500,
+        data: err.message || 'Some error occurred'
+      });
     });
 };
