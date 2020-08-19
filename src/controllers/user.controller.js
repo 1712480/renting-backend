@@ -71,7 +71,7 @@ exports.findAll = (req, res) => {
 };
 
 exports.findBy = (req, res) => {
-  const { email, password } = req.body.email;
+  const { email, password } = req.body;
 
   User.findAll({
     where: { email }
@@ -108,23 +108,16 @@ exports.findBy = (req, res) => {
 };
 
 exports.update = (req, res) => {
-  const { id } = req.params;
+  const { id } = req.body;
 
   User.update(req.body, {
     where: { id }
   })
-    .then(num => {
-      if (num === 1) {
-        res.status(200).send({
-          status: 200,
-          data: 'Updated successfully.'
-        });
-      } else {
-        res.status(400).send({
-          status: 400,
-          data: 'Cannot update.'
-        });
-      }
+    .then(() => {
+      res.status(200).send({
+        status: 200,
+        data: 'Updated successfully.'
+      });
     })
     .catch(err => {
       res.status(500).send({
@@ -177,6 +170,24 @@ exports.changePassword = (req, res) => {
       res.status(500).send({
         status: 500,
         data: err.message || 'Something happened.'
+      });
+    });
+};
+
+exports.updateRole = (req, res) => {
+  User.findAll({
+    where: { role: 0 }
+  })
+    .then(data => {
+      res.status(200).send({
+        status: 200,
+        data: data
+      })
+    })
+    .catch(error => {
+      res.status(500).send({
+        status: 500,
+        data: error.message || 'Something happened'
       });
     });
 };
