@@ -12,6 +12,7 @@ app.use(express.urlencoded({ extended: true }));
 
 const userRoute = require('./src/routes/user');
 const accommodationRouter = require('./src/routes/accommodation');
+const searchRouter = require('./src/routes/search');
 
 app.get('/', (req, res) => {
   res.send('BACKEND');
@@ -20,6 +21,8 @@ app.get('/', (req, res) => {
 app.use('/user', userRoute);
 
 app.use('/accommodation', accommodationRouter);
+
+app.use('/search', searchRouter);
 
 app.listen(port, () => {
   console.log(`Listening on ${port}`);
