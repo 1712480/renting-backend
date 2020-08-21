@@ -7,8 +7,6 @@ userRouter.post('/get', users.findBy);
 
 userRouter.post('/', users.create);
 
-userRouter.put('/:id', users.update);
-
 userRouter.post('/get-all', users.findAll);
 
 userRouter.get('/get-update-role', users.updateRole);

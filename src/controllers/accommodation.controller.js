@@ -73,3 +73,23 @@ exports.getAll = (req, res) => {
       });
     });
 };
+
+exports.update = (req, res) => {
+  const { id } = req.body;
+  
+  Accommodation.update(req.body, {
+    where: { id }
+  })
+    .then(() => {
+      res.send({
+        status: 200,
+        data: 'Updated successfully.'
+      })
+    })
+    .catch(error => {
+      res.send({
+        status: 500,
+        data: error.message || 'Error updating.'
+      })
+    })
+}

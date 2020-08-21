@@ -2,7 +2,6 @@ const bcrypt = require('bcrypt');
 const db = require('../../database/models');
 
 const salt = 10;
-
 const User = db.user;
 
 exports.create = (req, res) => {
