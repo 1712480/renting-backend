@@ -14,9 +14,6 @@ module.exports = {
       dateTime: {
         type: Sequelize.DATE
       },
-      point: {
-        type: Sequelize.DOUBLE
-      },
       description: {
         allowNull: false,
         type: Sequelize.TEXT
@@ -48,6 +45,10 @@ module.exports = {
       images: {
         allowNull: false,
         type: Sequelize.ARRAY(Sequelize.STRING)
+      },
+      vote: {
+        allowNull: false,
+        type: Sequelize.ARRAY(Sequelize.INTEGER)
       },
       createdAt: {
         allowNull: false,

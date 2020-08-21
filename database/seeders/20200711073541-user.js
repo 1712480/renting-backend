@@ -18,7 +18,88 @@ module.exports = {
         role: 2,
         createdAt: new Date(),
         updatedAt: new Date()
-      }
+      },
+      {
+        name: 'Chu tro 1',
+        phone: '0927563229',
+        email: 'chutro1@mail.com',
+        password: '$2b$10$Ppz.Xv0kJLBP6JmoGfs6ceG4/2VGRoo5xcP0aYlcMt8DJ6z79tgKC',
+        role: 1,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        name: 'Chu tro 2',
+        phone: '0927563229',
+        email: 'chutro2@mail.com',
+        password: '$2b$10$Ppz.Xv0kJLBP6JmoGfs6ceG4/2VGRoo5xcP0aYlcMt8DJ6z79tgKC',
+        role: 1,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        name: 'Chu tro 3',
+        phone: '0927563229',
+        email: 'chutro3@mail.com',
+        password: '$2b$10$Ppz.Xv0kJLBP6JmoGfs6ceG4/2VGRoo5xcP0aYlcMt8DJ6z79tgKC',
+        role: 1,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        name: 'Nguoi dung 1',
+        phone: '0927563229',
+        email: 'nguoidung1@mail.com',
+        password: '$2b$10$Ppz.Xv0kJLBP6JmoGfs6ceG4/2VGRoo5xcP0aYlcMt8DJ6z79tgKC',
+        role: 0,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        name: 'Nguoi dung 2',
+        phone: '0927563229',
+        email: 'nguoidung2@mail.com',
+        password: '$2b$10$Ppz.Xv0kJLBP6JmoGfs6ceG4/2VGRoo5xcP0aYlcMt8DJ6z79tgKC',
+        role: 0,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        name: 'Nguoi dung 3',
+        phone: '0927563229',
+        email: 'nguoidung3@mail.com',
+        password: '$2b$10$Ppz.Xv0kJLBP6JmoGfs6ceG4/2VGRoo5xcP0aYlcMt8DJ6z79tgKC',
+        role: 0,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        name: 'Nang cap 1',
+        phone: '0927563229',
+        email: 'nangcap1@mail.com',
+        password: '$2b$10$Ppz.Xv0kJLBP6JmoGfs6ceG4/2VGRoo5xcP0aYlcMt8DJ6z79tgKC',
+        role: 3,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        name: 'Nang cap 2',
+        phone: '0927563229',
+        email: 'nangcap2@mail.com',
+        password: '$2b$10$Ppz.Xv0kJLBP6JmoGfs6ceG4/2VGRoo5xcP0aYlcMt8DJ6z79tgKC',
+        role: 3,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        name: 'Nang cap 3',
+        phone: '0927563229',
+        email: 'nangcap3@mail.com',
+        password: '$2b$10$Ppz.Xv0kJLBP6JmoGfs6ceG4/2VGRoo5xcP0aYlcMt8DJ6z79tgKC',
+        role: 3,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
     ], {});
     /**
      * Add seed commands here.

@@ -23,7 +23,6 @@ module.exports = (sequelize, DataTypes) => {
   accommodation.init({
     name: DataTypes.STRING,
     dateTime: DataTypes.DATE,
-    point: DataTypes.DOUBLE,
     description: DataTypes.STRING,
     price: DataTypes.INTEGER,
     address: DataTypes.STRING,
@@ -32,6 +31,7 @@ module.exports = (sequelize, DataTypes) => {
     electric: DataTypes.INTEGER,
     owner: DataTypes.INTEGER,
     images: DataTypes.ARRAY(DataTypes.STRING),
+    vote: DataTypes.ARRAY(DataTypes.INTEGER),
   }, {
     sequelize,
     modelName: 'accommodation',
