@@ -5,9 +5,9 @@ const Accommodation = db.accommodation;
 exports.create = (req, res) => {
   if (!req.body.name || !req.body.description || !req.body.price || !req.body.address
         || !req.body.area || !req.body.water || !req.body.electric || !req.body.owner || !req.body.images) {
-    res.status(400).send({
+    res.send({
       status: 400,
-      data: 'Something is empty.'
+      data: 'Missing some mandatory field.'
     });
     return;
   }
@@ -20,15 +20,15 @@ exports.create = (req, res) => {
 
   Accommodation.create(accommodation)
     .then(data => {
-      res.status(201).send({
+      res.send({
         status: 201,
         data
       });
     })
     .catch(err => {
-      res.status(500).send({
+      res.send({
         status: 500,
-        data: err.detail || 'Some error has occurred'
+        data: err.detail || 'Error creating post.'
       });
     });
 };
@@ -38,15 +38,15 @@ exports.getBy = (req, res) => {
     where: { id: req.params.id }
   })
     .then(data => {
-      res.status(200).send({
+      res.send({
         status: 200,
         data
       });
     })
     .catch(error => {
-      res.status(500).send({
+      res.send({
         status: 500,
-        data: error.message || 'Some error occurred'
+        data: error.message || 'Error finding by ID.'
       });
     });
 };
@@ -61,15 +61,15 @@ exports.getAll = (req, res) => {
     ]
   })
     .then(data => {
-      res.status(200).send({
+      res.send({
         status: 200,
         data
       });
     })
     .catch(err => {
-      res.status(500).send({
+      res.send({
         status: 500,
-        data: err.message || 'Some error occurred'
+        data: err.message || 'Error finding all.'
       });
     });
 };

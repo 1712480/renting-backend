@@ -7,9 +7,9 @@ const User = db.user;
 
 exports.create = (req, res) => {
   if (!req.body.name || !req.body.phone || !req.body.email || !req.body.password || !req.body.role) {
-    res.status(400).send({
+    res.send({
       status: 400,
-      data: 'Something is empty.'
+      data: 'Missing some mandatory fields.'
     });
     return;
   }
@@ -29,7 +29,7 @@ exports.create = (req, res) => {
         password: pass
       })
         .then(data => {
-          res.status(201).send({
+          res.send({
             status: 201,
             data
           });
@@ -37,16 +37,15 @@ exports.create = (req, res) => {
         .catch(err => {
           switch (err.parent.code) {
             case '23505':
-              // violates unique constraint
-              res.status(409).send({
+              res.send({
                 status: 409,
-                data: err.parent.detail
+                data: "Duplication error."
               });
               break;
             default:
-              res.status(500).send({
+              res.send({
                 status: 500,
-                data: err.detail || 'Some error has occurred.'
+                data: "Error creating account."
               });
               break;
           }
@@ -57,15 +56,15 @@ exports.create = (req, res) => {
 exports.findAll = (req, res) => {
   User.findAll()
     .then(data => {
-      res.status(200).send({
+      res.send({
         status: 200,
         data
       });
     })
     .catch(err => {
-      res.status(500).send({
+      res.send({
         status: 500,
-        data: err.message || 'Some error occurred.'
+        data: 'Error finding all.'
       });
     });
 };
@@ -78,7 +77,7 @@ exports.findBy = (req, res) => {
   })
     .then(data => {
       if (data[0] === undefined) {
-        res.status(400).send({
+        res.send({
           status: 400,
           data: {}
         });
@@ -86,12 +85,12 @@ exports.findBy = (req, res) => {
         bcrypt.compare(password, data[0].dataValues.password)
           .then(result => {
             if (result) {
-              res.status(200).send({
+              res.send({
                 status: 200,
                 data: data[0].dataValues
               });
             } else {
-              res.status(400).send({
+              res.send({
                 status: 400,
                 data: {}
               });
@@ -100,9 +99,9 @@ exports.findBy = (req, res) => {
       }
     })
     .catch(err => {
-      res.status(500).send({
+      res.send({
         status: 500,
-        data: err.message || 'Some error occurred.'
+        data: 'Error finding by email.'
       });
     });
 };
@@ -114,15 +113,15 @@ exports.update = (req, res) => {
     where: { id }
   })
     .then(() => {
-      res.status(200).send({
+      res.send({
         status: 200,
         data: 'Updated successfully.'
       });
     })
     .catch(err => {
-      res.status(500).send({
+      res.send({
         status: 500,
-        data: err.message || 'Some error occurred.'
+        data: err.message || 'Cannot update into database.'
       });
     });
 };
@@ -146,20 +145,20 @@ exports.changePassword = (req, res) => {
                   where: { email }
                 })
                   .then(() => {
-                    res.status(200).send({
+                    res.send({
                       status: 200,
                       data: 'Success.'
                     });
                   })
                   .catch(err => {
-                    res.status(500).send({
+                    res.send({
                       status: 500,
-                      data: err.message || 'Something happened.'
+                      data: err.message || 'Cannot update into database.'
                     });
                   });
               });
           } else {
-            res.status(400).send({
+            res.send({
               status: 400,
               data: 'Wrong password.'
             });
@@ -167,27 +166,27 @@ exports.changePassword = (req, res) => {
         });
     })
     .catch(err => {
-      res.status(500).send({
+      res.send({
         status: 500,
-        data: err.message || 'Something happened.'
+        data: err.message || 'Cannot find user in database.'
       });
     });
 };
 
 exports.updateRole = (req, res) => {
   User.findAll({
-    where: { role: 0 }
+    where: { role: 3 }
   })
     .then(data => {
-      res.status(200).send({
+      res.send({
         status: 200,
         data: data
       })
     })
     .catch(error => {
-      res.status(500).send({
+      res.send({
         status: 500,
-        data: error.message || 'Something happened'
+        data: error.message || 'Error finding all.'
       });
     });
 };

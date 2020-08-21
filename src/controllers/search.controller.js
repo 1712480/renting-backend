@@ -27,16 +27,16 @@ exports.search = (req, res) => {
     }
   })
     .then(data => {
-      res.status(200).send({
+      res.send({
         status: 200,
         keyword: keyword,
         data: data
       });
     })
     .catch(error => {
-      res.status(500).send({
+      res.send({
         status: 500,
-        data: error.message || 'Something happened'
+        data: error.message || 'Error searching.'
       });
     });
 };

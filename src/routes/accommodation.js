@@ -1,5 +1,4 @@
 const express = require('express');
-
 const accommodationRouter = express.Router();
 const accommodation = require('../controllers/accommodation.controller');
 
