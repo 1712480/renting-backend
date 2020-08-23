@@ -14,7 +14,7 @@ exports.create = (req, res) => {
 
   const accommodation = {
     ...req.body,
-    point: 0,
+    vote: [],
     dateTime: new Date()
   };
 
@@ -74,6 +74,25 @@ exports.getAll = (req, res) => {
     });
 };
 
+exports.getByUser = (req, res) => {
+  const userId = req.params.id;
+  Accommodation.findAll({
+    where: { owner: userId }
+  })
+    .then(data => {
+      res.send({
+        status: 200,
+        data
+      })
+    })
+    .catch(err => {
+      res.send({
+        status: 500,
+        data: err.message || 'Error finding by user.'
+      })
+    })
+}
+
 exports.update = (req, res) => {
   const { id } = req.body;
   
@@ -85,6 +104,37 @@ exports.update = (req, res) => {
         status: 200,
         data: 'Updated successfully.'
       })
+    })
+    .catch(error => {
+      res.send({
+        status: 500,
+        data: error.message || 'Error updating.'
+      })
+    })
+}
+
+exports.vote = (req, res) => {
+  const { id } = req.body;
+
+  Accommodation.update(req.body, {
+    where: { id }
+  })
+    .then(() => {
+      Accommodation.findAll({
+        where: { id }
+      })
+        .then(data => {
+          res.send({
+            status: 200,
+            data: data
+          })
+        })
+        .catch(err => {
+          res.send({
+            status: 500,
+            data: err.message || 'Error finding by ID.'
+          })
+        })
     })
     .catch(error => {
       res.send({
